@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Три режими</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f5f5f5;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .switches {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      max-width: 400px;
+      width: 100%;
+    }
+
+    .switch {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: #fff;
+      border-radius: 12px;
+      padding: 15px 20px;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+
+    .switch span {
+      font-size: 1.2em;
+      font-weight: bold;
+      color: #333;
+    }
+
+    .slider-container {
+      position: relative;
+      width: 50px;
+      height: 28px;
+    }
+
+    .slider-container input[type="checkbox"] {
+      opacity: 0;
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      z-index: 2;
+      cursor: pointer;
+    }
+
+    .slider {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 50px;
+      height: 28px;
+      background-color: #ccc;
+      border-radius: 14px;
+      transition: background-color 0.3s;
+      z-index: 1;
+    }
+
+    .knob {
+      position: absolute;
+      top: 4px;
+      left: 4px;
+      width: 20px;
+      height: 20px;
+      background: white;
+      border-radius: 50%;
+      transition: transform 0.3s;
+      z-index: 3;
+    }
+
+    input:checked ~ .slider {
+      background-color: #4CAF50;
+    }
+
+    input:checked ~ .knob {
+      transform: translateX(22px);
+    }
+
+    .referral {
+      margin-top: 30px;
+      font-size: 0.95em;
+      text-align: center;
+      color: #666;
+    }
+
+    .referral a {
+      display: inline-block;
+      margin-top: 5px;
+      color: #4CAF50;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    @media (max-width: 480px) {
+      .switch span {
+        font-size: 1em;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="switches">
+    <div class="switch">
+      <span>FAST</span>
+      <div class="slider-container">
+        <input type="checkbox" id="fast" onchange="handleToggle('fast')"/>
+        <div class="slider"></div>
+        <div class="knob"></div>
+      </div>
+    </div>
+
+    <div class="switch">
+      <span>CHEAP</span>
+      <div class="slider-container">
+        <input type="checkbox" id="cheap" onchange="handleToggle('cheap')"/>
+        <div class="slider"></div>
+        <div class="knob"></div>
+      </div>
+    </div>
+
+    <div class="switch">
+      <span>GOOD</span>
+      <div class="slider-container">
+        <input type="checkbox" id="good" onchange="handleToggle('good')"/>
+        <div class="slider"></div>
+        <div class="knob"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="referral">
+    Join shutterstock through my referral link ♥<br />
+    <a href="https://submit.shutterstock.com/?rid=3329111" target="_blank">https://submit.shutterstock.com/?rid=3329111</a>
+  </div>
+
+  <script>
+    function handleToggle(id) {
+      const good = document.getElementById("good");
+      const fast = document.getElementById("fast");
+      const cheap = document.getElementById("cheap");
+
+      if (id === "good") {
+        if (good.checked) {
+          fast.checked = false;
+          cheap.checked = false;
+        }
+      } else {
+        good.checked = false;
+      }
+    }
+  </script>
+</body>
+</html>
